@@ -1,0 +1,10 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ChatProject
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+    username: root
+    password: mysql114514
