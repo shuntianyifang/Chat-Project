@@ -12,12 +12,10 @@ import com.github.shuntianyifang.chatproject.exception.ApiException;
 import com.github.shuntianyifang.chatproject.mapper.PostMapper;
 import com.github.shuntianyifang.chatproject.mapper.ReportMapper;
 import com.github.shuntianyifang.chatproject.mapper.UserMapper;
-import com.github.shuntianyifang.chatproject.result.AjaxResult;
 import com.github.shuntianyifang.chatproject.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +47,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public AjaxResult<Object> approvalReport(Integer userId, Integer reportId, Integer status) {
+    public void approvalReport(Integer userId, Integer reportId, Integer status) {
         Report report = reportMapper.selectById(reportId);
         if (report == null) {
             throw new ApiException(ExceptionEnum.REPORT_NOT_EXIST);
@@ -63,13 +61,13 @@ public class ReportServiceImpl implements ReportService {
         if (status == 1) {
             Post post = postMapper.selectById(report.getPostId());
             if (post != null) {
-                postMapper.deleteById(post.getId());
-                return AjaxResult.success("举报通过，帖子已被删除");
+                postMapper.deleteById(post.getPostId());
+                return;
             }
             throw new ApiException(ExceptionEnum.POST_ALREADY_DELATED);
         }
         else if (status == 2) {
-            return AjaxResult.success("举报未通过");
+            return;
         }
         throw new ApiException(ExceptionEnum.APPROVAL_ERROR);
     }
@@ -86,9 +84,9 @@ public class ReportServiceImpl implements ReportService {
 
         Map<Integer, Post> postMap;
         if (!postIds.isEmpty()) {
-            List<Post> posts = postMapper.selectBatchIds(postIds);
+            List<Post> posts = postMapper.selectByIds(postIds);
             postMap = posts.stream()
-                    .collect(Collectors.toMap(Post::getId, Function.identity()));
+                    .collect(Collectors.toMap(Post::getPostId, Function.identity()));
         } else {
             postMap = new HashMap<>();
         }
@@ -111,7 +109,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<GetReportListElement> getReportList(Integer userId) {
-        LambdaQueryWrapper<Report> reportQueryWrapper = new LambdaQueryWrapper<Report>();
+        LambdaQueryWrapper<Report> reportQueryWrapper = new LambdaQueryWrapper<>();
 
         List<Report> list = reportMapper.selectList(reportQueryWrapper);
         return list.stream()

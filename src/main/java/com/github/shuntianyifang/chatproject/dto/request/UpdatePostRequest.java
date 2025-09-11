@@ -1,5 +1,6 @@
 package com.github.shuntianyifang.chatproject.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +13,12 @@ import jakarta.validation.constraints.NotNull;
 @Builder
 public class UpdatePostRequest {
     @NotNull
-    private Integer user_id;
+    @JsonProperty("user_id")
+    private Integer userId;
 
     @NotNull
-    private Integer post_id;
+    @JsonProperty("post_id")
+    private Integer postId;
 
     @NotBlank
     private String content;

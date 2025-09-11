@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class GetPostListElement {
-    private Integer id;
+    private Integer postId;
 
     private String content;
     @JsonProperty("user_id")

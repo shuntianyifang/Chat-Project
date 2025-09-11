@@ -1,21 +1,17 @@
 package com.github.shuntianyifang.chatproject.controller;
 
-import com.github.shuntianyifang.chatproject.dto.request.DeletePostRequest;
 import com.github.shuntianyifang.chatproject.dto.request.PublishPostRequest;
 import com.github.shuntianyifang.chatproject.dto.request.UpdatePostRequest;
 import com.github.shuntianyifang.chatproject.dto.response.BaseListResponse;
-import com.github.shuntianyifang.chatproject.dto.response.GetPostDetailResponse;
 import com.github.shuntianyifang.chatproject.dto.response.GetPostListElement;
 import com.github.shuntianyifang.chatproject.result.AjaxResult;
 import com.github.shuntianyifang.chatproject.service.PostService;
-import jakarta.validation.constraints.NotBlank;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/student/post")
@@ -33,7 +29,7 @@ public class PostController {
 
     @PutMapping
     public AjaxResult<Void> updatePost(@Valid @RequestBody UpdatePostRequest request) {
-        postService.updatePost(request.getUser_id(), request.getPost_id(), request.getContent());
+        postService.updatePost(request.getUserId(), request.getPostId(), request.getContent());
         return AjaxResult.success();
     }
 

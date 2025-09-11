@@ -65,7 +65,7 @@ public class PostServiceImpl implements PostService {
         List<Post> list = postMapper.selectList(postQueryWrapper);
         return list.stream()
                 .map(post -> GetPostListElement.builder()
-                        .id(post.getId())
+                        .postId(post.getPostId())
                         .content(post.getContent())
                         .userId(post.getUserId())
                         .createdAt(post.getCreatedAt())

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Post {
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Integer postId;
 
     private String content;
     @TableField(value = "user_id", insertStrategy = FieldStrategy.ALWAYS)
