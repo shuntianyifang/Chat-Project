@@ -15,3 +15,5 @@ v0.0.2
 ReportServiceImpl中的AjaxResult被删去，同时不再返回值  
 统一了UserController中对于loginService和registerService的注解  
 让readme的换行正确显示  
+v0.0.3  
+清理了部分完全不可能用到的代码

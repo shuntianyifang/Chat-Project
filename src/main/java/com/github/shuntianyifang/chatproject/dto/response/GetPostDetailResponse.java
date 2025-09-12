@@ -2,7 +2,6 @@ package com.github.shuntianyifang.chatproject.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data

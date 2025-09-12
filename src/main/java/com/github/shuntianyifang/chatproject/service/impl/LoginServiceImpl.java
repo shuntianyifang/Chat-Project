@@ -13,12 +13,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
     private final UserMapper userMapper;
-
-    @Override
-    public Integer login(String username, String password, Integer user_type, Integer user_id) {
-        return 0;
-    }
-
     @Override
     public User login(String username, String password) {
         LambdaQueryWrapper<User> userQueryWrapper = new LambdaQueryWrapper<>();
@@ -26,9 +20,9 @@ public class LoginServiceImpl implements LoginService {
 
         User user = userMapper.selectOne(userQueryWrapper);
         if (user == null) {
-            throw new ApiException(ExceptionEnum.WRONG_USERNAME);
+            throw new ApiException(ExceptionEnum.WRONG_USERNAME_OR_PASSWORD);
         } else if (!user.getPassword().equals(password)) {
-            throw new ApiException(ExceptionEnum.WRONG_PASSWORD);
+            throw new ApiException(ExceptionEnum.WRONG_USERNAME_OR_PASSWORD);
         }
         return user;
     }

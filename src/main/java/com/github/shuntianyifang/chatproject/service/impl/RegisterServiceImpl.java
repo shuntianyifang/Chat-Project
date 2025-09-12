@@ -16,11 +16,6 @@ public class RegisterServiceImpl implements RegisterService {
     private final UserMapper userMapper;
 
     @Override
-    public Integer register(String username, String name, String password, Integer user_type, Integer user_id) {
-        return 0;
-    }
-
-    @Override
     public User register(String username, String name, String password, Integer user_type) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUsername, username);

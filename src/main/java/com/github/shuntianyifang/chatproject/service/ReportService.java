@@ -3,7 +3,6 @@ package com.github.shuntianyifang.chatproject.service;
 import com.github.shuntianyifang.chatproject.dto.request.ReportRequest;
 import com.github.shuntianyifang.chatproject.dto.response.GetReportListElement;
 import com.github.shuntianyifang.chatproject.dto.response.GetReportResponse;
-
 import java.util.List;
 
 public interface ReportService {

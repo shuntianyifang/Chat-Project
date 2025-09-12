@@ -3,7 +3,6 @@ package com.github.shuntianyifang.chatproject.mapper;
 import com.github.shuntianyifang.chatproject.entity.Report;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 import java.util.Map;
 
